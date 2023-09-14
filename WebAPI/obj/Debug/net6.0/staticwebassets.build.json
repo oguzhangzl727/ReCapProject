@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "NR9iXzltarB2I+gn+06VrFAYxxCScaSEb4I8KlW/cZI=",
+  "Source": "WebAPI",
+  "BasePath": "_content/WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebAPI\\wwwroot",
+      "Source": "WebAPI",
+      "ContentRoot": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\Uploads\\Images\\b3eada00-436e-4fd8-81cd-f438a0dbed2c.jpeg",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "Uploads/Images/b3eada00-436e-4fd8-81cd-f438a0dbed2c.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Images\\b3eada00-436e-4fd8-81cd-f438a0dbed2c.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\Uploads\\Images\\d1d8e9c4-fdae-4909-baac-61a7041a6287.jpeg",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "Uploads/Images/d1d8e9c4-fdae-4909-baac-61a7041a6287.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Images\\d1d8e9c4-fdae-4909-baac-61a7041a6287.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\Uploads\\Images\\no-photos.png",
+      "SourceId": "WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\90539\\source\\repos\\ReCapProject\\WebAPI\\wwwroot\\",
+      "BasePath": "_content/WebAPI",
+      "RelativePath": "Uploads/Images/no-photos.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Images\\no-photos.png"
+    }
+  ]
+}
