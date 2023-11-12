@@ -8,8 +8,8 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
-using Core.Utilities.Results;
 using Business.BusinessAspect.Autofac;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -26,9 +26,10 @@ namespace Business.Concrete
 
         [SecuredOperation("carimage.add,admin")]
         [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(IFormFile file, CarImage carImage)
         {
-            var result = BusinessRules.Run(CheckIfCarImageLimit(carImage.CarId));
+            var result = BusinessRules.Run(CheckImageLimitExceeded(carImage.CarId));
             if (result != null)
             {
                 return result;
@@ -46,6 +47,7 @@ namespace Business.Concrete
 
 
         [SecuredOperation("carimage.delete,admin")]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(CarImage carImage)
         {
             _carImageDal.Delete(carImage);
@@ -53,16 +55,22 @@ namespace Business.Concrete
 
         }
 
+
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(),Messages.CarImagesListed);
         }
 
+
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c=>c.CarId==carId), Messages.CarImagesListed);
+            return new SuccessDataResult<List<CarImage>>(CheckIfCarImageNull(carId), Messages.CarImagesListed);
         }
 
+
+        [CacheAspect]
         public IDataResult<CarImage> GetByImageId(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c=>c.Id==id), Messages.CarImageListed);
@@ -72,6 +80,7 @@ namespace Business.Concrete
 
         [SecuredOperation("carimage.update,admin")]
         [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             _carImageDal.Update(carImage);
@@ -80,34 +89,36 @@ namespace Business.Concrete
 
 
 
-        private IResult CheckIfCarImageLimit(int carId)
+
+
+        private IResult CheckImageLimitExceeded(int carId)
         {
-            var result = _carImageDal.GetAll(carImage => carImage.CarId == carId);
-            if (result.Count >= 5)
+            var carImageCount = _carImageDal.GetAll(c => c.CarId == carId).Count;
+            if (carImageCount >= 5)
             {
                 return new ErrorResult(Messages.CarImageLimitExceded);
             }
             return new SuccessResult();
         }
 
-
-        private IDataResult<List<CarImage>> GetDefaultImage(int carId)
+        private List<CarImage> CheckIfCarImageNull(int id)
         {
-            var defaultCarImage = new List<CarImage>();
-
-            defaultCarImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = "no-photos.png" });
-
-            return new SuccessDataResult<List<CarImage>>(defaultCarImage);
-        }
-
-        private IResult CheckCarImageCount(int carId)
-        {
-            var result = _carImageDal.GetAll(carImage => carImage.CarId == carId).Count;
-            if (result > 0)
+            string path = @"\images\no-photos.png";
+            var result = _carImageDal.GetAll(c => c.CarId == id).Any();
+            if (!result)
             {
-                return new SuccessResult();
+                return new List<CarImage>
+                {
+                    new CarImage
+                    {
+                        CarId = id,
+                        ImagePath = path,
+                        Date = DateTime.Now
+                    }
+                };
             }
-            return new ErrorResult();
+            return _carImageDal.GetAll(c => c.CarId == id);
         }
+
     }
 }

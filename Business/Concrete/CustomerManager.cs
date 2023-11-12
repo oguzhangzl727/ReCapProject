@@ -2,6 +2,7 @@
 using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,6 +27,7 @@ namespace Business.Concrete
         }
 
 
+        [SecuredOperation("customer.add,admin")]
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
@@ -41,6 +43,7 @@ namespace Business.Concrete
         }
 
 
+        [SecuredOperation("customer.delete,admin")]
         public IResult Delete(Customer customer)
         {
             try
@@ -54,6 +57,9 @@ namespace Business.Concrete
             }
         }
 
+
+
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             try
@@ -74,6 +80,9 @@ namespace Business.Concrete
             }
         }
 
+
+
+        [CacheAspect]
         public IDataResult<Customer> GetById(int id)
         {
             try
@@ -94,6 +103,9 @@ namespace Business.Concrete
             }
         }
 
+
+
+        [CacheAspect]
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
             try
@@ -116,6 +128,7 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(CustomerValidator))]
+        [SecuredOperation("customer.update,admin")]
         public IResult Update(Customer customer)
         {
             try

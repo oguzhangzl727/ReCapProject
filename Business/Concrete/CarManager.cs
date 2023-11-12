@@ -2,6 +2,7 @@
 using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Entities;
@@ -26,6 +27,7 @@ namespace Business.Concrete
 
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             try
@@ -50,6 +52,7 @@ namespace Business.Concrete
 
 
         [SecuredOperation("car.delete,admin")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             try
@@ -64,6 +67,8 @@ namespace Business.Concrete
             }
         }
 
+
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             try
@@ -85,6 +90,9 @@ namespace Business.Concrete
 
         }
 
+
+
+        [CacheAspect]
         public IDataResult<Car> GetById(int carId)
         {
             
@@ -105,8 +113,10 @@ namespace Business.Concrete
                 return new ErrorDataResult<Car>(ex.ToString()); 
             }
         }
-        
 
+
+
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             
@@ -128,8 +138,10 @@ namespace Business.Concrete
             }
         }
 
-        
 
+
+
+        [CacheAspect]
         public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
           
@@ -151,6 +163,10 @@ namespace Business.Concrete
             }
         }
 
+
+
+
+        [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
             try
@@ -177,6 +193,7 @@ namespace Business.Concrete
 
         [SecuredOperation("car.update,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             try

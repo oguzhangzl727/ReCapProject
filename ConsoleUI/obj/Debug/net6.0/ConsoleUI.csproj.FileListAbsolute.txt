@@ -84,3 +84,4 @@ C:\Users\90539\source\repos\ReCapProject\ConsoleUI\bin\Debug\net6.0\Microsoft.As
 C:\Users\90539\source\repos\ReCapProject\ConsoleUI\bin\Debug\net6.0\System.IO.Pipelines.dll
 C:\Users\90539\source\repos\ReCapProject\ConsoleUI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
 C:\Users\90539\source\repos\ReCapProject\ConsoleUI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\90539\source\repos\ReCapProject\ConsoleUI\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Abstractions.dll

@@ -2,6 +2,7 @@
 using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -62,6 +63,9 @@ namespace Business.Concrete
             }
         }
 
+
+
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             try
@@ -82,6 +86,10 @@ namespace Business.Concrete
             }
         }
 
+
+
+
+        [CacheAspect]
         public IDataResult<Rental> GetById(int id)
         {
             try
@@ -102,6 +110,10 @@ namespace Business.Concrete
             }
         }
 
+
+
+
+        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             try
@@ -122,6 +134,10 @@ namespace Business.Concrete
             }
         }
 
+
+
+
+        [CacheAspect]
         public IDataResult<List<Rental>> GetRentalsByCarId(int id)
         {
             try
@@ -142,6 +158,9 @@ namespace Business.Concrete
             }
         }
 
+
+
+        [CacheAspect]
         public IDataResult<List<Rental>> GetRentalsByCustomerId(int id)
         {
             try
